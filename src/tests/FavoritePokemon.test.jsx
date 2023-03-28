@@ -36,13 +36,13 @@ describe('', () => {
     userEvent.click(checkFavorite);
     userEvent.click(favoritelink);
 
-    const favoriteStar = screen.getByRole('img', {
+    const favoriteStar = screen.getAllByRole('img', {
       name: /marked as favorite/i,
     });
     const { location: { pathname } } = history;
 
     console.log(favoriteStar);
     expect(pathname).toBe('/favorites');
-    expect(favoriteStar).toBeInTheDocument();
+    expect(favoriteStar).toHaveLength(1);
   });
 });
