@@ -1,8 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../renderWithRouter';
-import App from '../App';
 import { About } from '../pages';
 
 describe('Testa o Componente <About />', () => {
@@ -15,6 +12,21 @@ describe('Testa o Componente <About />', () => {
     });
     expect(titleElement).toBeInTheDocument();
   });
+
+  test('Verifica se há dois paragráfos na página com os textos corretos', () => {
+    render(<About />);
+    const textP11 = 'This application simulates a Pokédex,';
+    const textP12 = 'a digital encyclopedia containing all Pokémon';
+    const textP21 = 'One can filter Pokémon by type,';
+    const textP22 = 'and see more details for each one of them';
+
+    const firstParagraph = screen.getByText(`${textP11} ${textP12}`);
+    const secondParagraph = screen.getByText(`${textP21} ${textP22}`);
+
+    expect(firstParagraph).toBeInTheDocument();
+    expect(secondParagraph).toBeInTheDocument();
+  });
+
   test('Verifica se a pagina contém a imagem correta', () => {
     render(<About />);
 
