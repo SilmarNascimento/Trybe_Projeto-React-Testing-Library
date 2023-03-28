@@ -20,11 +20,13 @@ describe('', () => {
   test('Verifica se a imagem é redenrizada corretamente', () => {
     render(<NotFound />);
 
-    const imgElement = screen.getByRole('img', {
-      name: /page requested was not found/i,
+    const imgElement = screen.getAllByRole('img', {
+      src: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
+      class: /not-found-image/i,
+      name: /requested was not found/i,
     });
-
-    expect(imgElement).toBeInTheDocument();
+    console.log(imgElement);
+    expect(imgElement).toHaveLength(1);
   });
 
   test('Vefirica se com uma URL errada o componente Not Found é renderizado', () => {
