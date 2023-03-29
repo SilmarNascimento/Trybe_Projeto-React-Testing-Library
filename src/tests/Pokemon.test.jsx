@@ -20,7 +20,7 @@ describe('Testa o componente <Pokemon /> e suas rotas', () => {
       const checkFavorite = screen.queryByRole('img', {
         name: `${pokeName} is marked as favorite`,
       });
-      console.log(checkFavorite);
+
       const nameElement = screen.getByText(`${pokeName}`);
       const typeElement = screen.getByTestId('pokemon-type');
       const weightElement = screen.getByText(`Average weight: ${value} ${unit}`);
@@ -83,6 +83,7 @@ describe('Testa o componente <Pokemon /> e suas rotas', () => {
       name: /is marked as favorite/i,
     });
     expect(favoriteMark).toBeInTheDocument();
+    expect(favoriteMark).toHaveProperty('src', 'http://localhost/star-icon.svg');
 
     const linkHome = screen.getByRole('link', {
       name: /home/i,
