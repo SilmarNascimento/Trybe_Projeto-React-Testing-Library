@@ -12,21 +12,30 @@ describe('Testa o componente <Pokemon /> e suas rotas', () => {
     pokemonList.forEach((pokemon) => {
       const {
         name: pokeName,
+        type,
         averageWeight: { value, measurementUnit: unit },
         image: img,
       } = pokemon;
+
+      const checkFavorite = screen.queryByRole('img', {
+        name: `${pokeName} is marked as favorite`,
+      });
+      console.log(checkFavorite);
       const nameElement = screen.getByText(`${pokeName}`);
       const typeElement = screen.getByTestId('pokemon-type');
       const weightElement = screen.getByText(`Average weight: ${value} ${unit}`);
       const imgElement = screen.getByRole('img', {
         name: `${pokeName} sprite`,
-        src: img,
       });
 
+      expect(checkFavorite).toBeFalsy();
+      expect(checkFavorite).not.toBeInTheDocument();
       expect(nameElement).toBeInTheDocument();
       expect(typeElement).toBeInTheDocument();
+      expect(typeElement).toHaveTextContent(`${type}`);
       expect(weightElement).toBeInTheDocument();
       expect(imgElement).toBeInTheDocument();
+      expect(imgElement).toHaveProperty('src', `${img}`);
 
       const nextBtn = screen.getByRole('button', {
         name: /próximo pokémon/i,
