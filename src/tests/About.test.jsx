@@ -29,10 +29,12 @@ describe('Testa o Componente <About />', () => {
 
   test('Verifica se a pagina contém a imagem correta', () => {
     render(<About />);
+    const URL = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
 
     const imgElement = screen.getByRole('img', {
-      src: 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
+      src: `${URL}`,
     });
+    console.log(imgElement);
     expect(imgElement).toBeInTheDocument();
   });
 });
